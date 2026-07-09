@@ -4,6 +4,8 @@ import { supabase, configurado } from './lib/supabase.js'
 import Acceso from './pages/Acceso.jsx'
 import Panel from './pages/Panel.jsx'
 import Administradores from './pages/Administradores.jsx'
+import Pisos from './pages/Pisos.jsx'
+import PisoDetalle from './pages/PisoDetalle.jsx'
 
 export default function App() {
   const [sesion, setSesion] = useState(null)
@@ -69,6 +71,14 @@ export default function App() {
       <Route
         path="/administradores"
         element={dentro ? <Administradores sesion={sesion} /> : <Navigate to="/acceso" replace />}
+      />
+      <Route
+        path="/pisos"
+        element={dentro ? <Pisos /> : <Navigate to="/acceso" replace />}
+      />
+      <Route
+        path="/pisos/:id"
+        element={dentro ? <PisoDetalle /> : <Navigate to="/acceso" replace />}
       />
       <Route
         path="/*"

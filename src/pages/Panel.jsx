@@ -5,6 +5,7 @@ const secciones = [
   {
     titulo: 'Pisos',
     texto: 'Fichas de las viviendas de Toledo, Pinto y Madrid con sus contratos y documentos.',
+    ruta: '/pisos',
   },
   {
     titulo: 'Inquilinos y contratos',
@@ -49,13 +50,20 @@ export default function Panel({ sesion }) {
         </p>
 
         <div className="tarjetas">
-          {secciones.map((s) => (
-            <div className="tarjeta" key={s.titulo}>
-              <h3>{s.titulo}</h3>
-              <p>{s.texto}</p>
-              <span className="proximamente">Próximamente</span>
-            </div>
-          ))}
+          {secciones.map((s) =>
+            s.ruta ? (
+              <Link className="tarjeta tarjeta-enlace" to={s.ruta} key={s.titulo}>
+                <h3>{s.titulo}</h3>
+                <p>{s.texto}</p>
+              </Link>
+            ) : (
+              <div className="tarjeta" key={s.titulo}>
+                <h3>{s.titulo}</h3>
+                <p>{s.texto}</p>
+                <span className="proximamente">Próximamente</span>
+              </div>
+            )
+          )}
         </div>
       </main>
     </>

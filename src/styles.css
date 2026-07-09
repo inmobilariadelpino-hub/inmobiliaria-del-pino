@@ -85,6 +85,23 @@ input:focus, select:focus {
   box-shadow: 0 0 0 3px var(--pino-100);
 }
 
+textarea {
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1.5px solid #d7ddd9;
+  border-radius: var(--radio);
+  background: var(--blanco);
+  color: var(--tinta);
+  resize: vertical;
+}
+textarea:focus {
+  outline: none;
+  border-color: var(--pino-500);
+  box-shadow: 0 0 0 3px var(--pino-100);
+}
+
 label {
   display: block;
   font-size: 0.85rem;
@@ -335,10 +352,73 @@ button.secundario.peligro {
 }
 button.secundario.peligro:hover { background: #f9e9e6; }
 
+/* ---------- Secciones con listado (pisos, etc.) ---------- */
+
+.cabecera-seccion {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.cabecera-seccion .subtitulo { margin: 0.3rem 0 0; }
+
+.boton-enlace {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radio);
+  padding: 0.75rem 1.25rem;
+  background: var(--pino-700);
+  color: var(--blanco);
+  transition: background 0.15s ease;
+}
+.boton-enlace:hover { background: var(--pino-900); }
+
+.tarjeta-enlace {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.tarjeta-enlace:hover {
+  box-shadow: 0 2px 4px rgba(22, 48, 43, 0.08), 0 8px 24px rgba(22, 48, 43, 0.1);
+  transform: translateY(-2px);
+}
+.tarjeta-enlace h3 { color: var(--pino-900); }
+
+.piso-ciudad {
+  margin-top: 0.5rem !important;
+  font-weight: 600;
+  color: var(--pino-500) !important;
+}
+.piso-datos {
+  margin-top: 0.35rem !important;
+  font-size: 0.85rem !important;
+}
+
+.campos-fila {
+  display: flex;
+  gap: 1rem;
+}
+.campos-fila .campo { flex: 1; }
+
+.formulario-acciones {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
 @media (max-width: 480px) {
   .lista-admins li { flex-direction: column; align-items: flex-start; }
   .admin-acciones { width: 100%; }
   .admin-acciones button { flex: 1; }
+
+  .cabecera-seccion { flex-direction: column; }
+  .boton-enlace { width: 100%; justify-content: center; }
+  .campos-fila { flex-direction: column; gap: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
