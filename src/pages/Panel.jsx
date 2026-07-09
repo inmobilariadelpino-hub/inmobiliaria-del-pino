@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase.js'
 
 const secciones = [
@@ -34,7 +35,10 @@ export default function Panel({ sesion }) {
             <small>Gestión de alquileres</small>
           </div>
         </div>
-        <button onClick={() => supabase.auth.signOut()}>Salir</button>
+        <div className="app-cabecera-acciones">
+          <Link to="/administradores" className="enlace-cabecera">Administradores</Link>
+          <button onClick={() => supabase.auth.signOut()}>Salir</button>
+        </div>
       </header>
 
       <main className="contenido">

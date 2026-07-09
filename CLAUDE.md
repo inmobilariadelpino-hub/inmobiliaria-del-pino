@@ -4,8 +4,10 @@
 
 Aplicación web **interna y familiar** para gestionar los pisos en alquiler de
 larga duración de la madre del propietario del repo. Pisos en Toledo, Pinto y
-Madrid. Solo dos usuarios administradores (madre e hijo). No hay parte pública
-ni registro de usuarios.
+Madrid. El acceso está restringido a una lista blanca de administradores
+gestionada desde la propia app (tabla `administradores`); esa lista arranca con
+la madre y el hijo, pero puede crecer. Login vía Google (sin gestión propia de
+contraseñas).
 
 ## Stack y decisiones tomadas (no cambiar sin consultar)
 
@@ -13,8 +15,10 @@ ni registro de usuarios.
 - **Hosting**: GitHub Pages, desplegado por el workflow
   `.github/workflows/deploy.yml` (Source: GitHub Actions). Dominio
   `inmobiliariadelpino.es` (registrado en Hostinger, `public/CNAME` ya fijado).
-- **Backend**: Supabase — Postgres, Auth (email+contraseña, usuarios creados a
-  mano, sin signup), Storage (bucket privado `documentos`) y Edge Functions.
+- **Backend**: Supabase — Postgres, Auth (**Google OAuth como único
+  proveedor**; el acceso se restringe con la tabla `administradores` y RLS
+  basado en `auth.jwt() ->> 'email'`), Storage (bucket privado `documentos`)
+  y Edge Functions.
 - **IA**: API de Anthropic, llamada SOLO desde Edge Functions de Supabase
   (nunca desde el navegador; la clave API vive como secreto de la función).
 - **Estilo de código**: español para nombres de variables, componentes, rutas
@@ -23,10 +27,13 @@ ni registro de usuarios.
 
 ## Esquema de base de datos
 
-En `supabase/esquema_v1.sql`. Tablas: `propiedades`, `inquilinos`,
-`contratos`, `ingresos` (una fila por contrato+mes, estado pagado/pendiente),
-`gastos`, `documentos` (archivo en Storage + `datos_extraidos` jsonb que
-rellena la IA y el usuario confirma). RLS: acceso total para autenticados.
+En `supabase/esquema_v1.sql` (tablas base) y `supabase/migracion_admins.sql`
+(tabla `administradores` + RLS por email). Tablas: `propiedades`,
+`inquilinos`, `contratos`, `ingresos` (una fila por contrato+mes, estado
+pagado/pendiente), `gastos`, `documentos` (archivo en Storage +
+`datos_extraidos` jsonb que rellena la IA y el usuario confirma),
+`administradores` (email, activo). RLS: todas las tablas comprueban
+`es_admin()` (que mira el JWT y busca el email en `administradores`).
 
 ## Fase 1 (alcance actual)
 

@@ -153,6 +153,25 @@ label {
 
 .campo { margin-bottom: 1.1rem; }
 
+.acceso-texto {
+  color: var(--tinta-suave);
+  font-size: 0.95rem;
+  margin: 0 0 1.3rem;
+}
+
+.boton-google {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: var(--blanco);
+  color: var(--tinta);
+  border: 1.5px solid #d7ddd9;
+  font-weight: 600;
+}
+.boton-google:hover { background: var(--pino-100); }
+
 .aviso-error {
   background: #f9e9e6;
   color: var(--error);
@@ -186,13 +205,28 @@ label {
 .app-cabecera .marca-nombre { color: var(--blanco); }
 .app-cabecera .marca-nombre small { color: var(--pino-100); }
 .app-cabecera .marca { margin: 0; }
+.app-cabecera-acciones {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
 .app-cabecera button {
   background: transparent;
   border: 1.5px solid var(--pino-500);
   padding: 0.45rem 0.9rem;
   font-size: 0.9rem;
+  color: var(--blanco);
 }
 .app-cabecera button:hover { background: var(--pino-700); }
+.enlace-cabecera {
+  color: var(--pino-100);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.45rem 0.6rem;
+  border-radius: var(--radio);
+}
+.enlace-cabecera:hover { color: var(--blanco); background: var(--pino-700); }
 
 .contenido {
   max-width: 960px;
@@ -230,6 +264,81 @@ label {
   background: var(--resina-suave);
   border-radius: 999px;
   padding: 0.25rem 0.7rem;
+}
+
+/* ---------- Página de administradores ---------- */
+
+.formulario {
+  max-width: 480px;
+  margin-bottom: 2rem;
+}
+.formulario h3 { margin-bottom: 1rem; }
+
+.lista-admins h3 { margin-bottom: 0.8rem; }
+.lista-admins ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.lista-admins li {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 0.9rem 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.lista-admins li.inactivo { opacity: 0.55; }
+
+.admin-info {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.admin-nombre {
+  color: var(--tinta-suave);
+  font-size: 0.9rem;
+}
+.etiqueta {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--resina);
+  background: var(--resina-suave);
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+}
+.etiqueta.apagada {
+  color: var(--tinta-suave);
+  background: var(--pino-100);
+}
+
+.admin-acciones {
+  display: flex;
+  gap: 0.4rem;
+}
+.admin-acciones button {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.7rem;
+}
+button.secundario.peligro {
+  color: var(--error);
+  border-color: #f0d3ce;
+}
+button.secundario.peligro:hover { background: #f9e9e6; }
+
+@media (max-width: 480px) {
+  .lista-admins li { flex-direction: column; align-items: flex-start; }
+  .admin-acciones { width: 100%; }
+  .admin-acciones button { flex: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
