@@ -411,6 +411,20 @@ button.secundario.peligro:hover { background: #f9e9e6; }
   margin-top: 0.5rem;
 }
 
+label.check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+  font-weight: 500;
+  color: var(--tinta);
+  cursor: pointer;
+}
+label.check input {
+  width: auto;
+  margin: 0;
+}
+
 @media (max-width: 480px) {
   .lista-admins li { flex-direction: column; align-items: flex-start; }
   .admin-acciones { width: 100%; }

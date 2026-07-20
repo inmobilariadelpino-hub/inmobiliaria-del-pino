@@ -20,8 +20,9 @@ const secciones = [
     texto: 'IBI, comunidad, reparaciones y seguros de cada vivienda.',
   },
   {
-    titulo: 'Subir documento',
-    texto: 'Fotografía un contrato, una factura o una página del cuaderno y la IA extrae los datos para que los confirmes.',
+    titulo: 'Subir contrato',
+    texto: 'Fotografía un contrato y la IA extrae los datos para que los confirmes y se dé de alta.',
+    ruta: '/subir/contrato',
   },
 ]
 

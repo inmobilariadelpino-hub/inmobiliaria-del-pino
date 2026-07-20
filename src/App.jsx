@@ -6,6 +6,7 @@ import Panel from './pages/Panel.jsx'
 import Administradores from './pages/Administradores.jsx'
 import Pisos from './pages/Pisos.jsx'
 import PisoDetalle from './pages/PisoDetalle.jsx'
+import SubirContrato from './pages/SubirContrato.jsx'
 
 export default function App() {
   const [sesion, setSesion] = useState(null)
@@ -79,6 +80,10 @@ export default function App() {
       <Route
         path="/pisos/:id"
         element={dentro ? <PisoDetalle /> : <Navigate to="/acceso" replace />}
+      />
+      <Route
+        path="/subir/contrato"
+        element={dentro ? <SubirContrato /> : <Navigate to="/acceso" replace />}
       />
       <Route
         path="/*"
